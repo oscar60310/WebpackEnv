@@ -10,6 +10,9 @@ module.exports = {
         rules: [{
             test: /\.sass$/,
             loader: 'style-loader!css-loader!sass-loader'
+        }, {
+            test: /\.(png|jpg|jpeg|svg)$/,
+            loader: 'url-loader?limit=8192&name=dist/[name].[ext]'
         }]
     },
     plugins: [
