@@ -6,6 +6,12 @@ module.exports = {
         path: path.resolve(__dirname, 'build'),
         filename: 'main.js'
     },
+    module: {
+        rules: [{
+            test: /\.sass$/,
+            loader: 'style-loader!css-loader!sass-loader'
+        }]
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: './app/template/main.html'
