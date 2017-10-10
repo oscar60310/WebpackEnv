@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-module.exports = {
+const env = process.env.NODE_ENV || 'dev';
+console.log(`Mode :${env}`);
+const config = {
     entry: ['./app/main.js'],
     output: {
         path: path.resolve(__dirname, 'build'),
@@ -21,3 +23,14 @@ module.exports = {
         })
     ]
 };
+
+// js 壓縮
+if (env === 'prod') {
+    config.module.rules.push({
+        test: /\.(js)$/,
+        loader: 'babel-loader'
+    });
+    const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+    config.plugins.push(new UglifyJSPlugin());
+}
+module.exports = config;
